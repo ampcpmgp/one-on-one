@@ -1,0 +1,14 @@
+/.vscode/
+.DS_Store
+
+# Node.js
+node_modules/
+
+# am-mocktimes
+.am-mocktimes-img/
+
+# vite
+dist/
+
+# storybook
+storybook-static/

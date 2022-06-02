@@ -1,0 +1,42 @@
+{
+  "name": "vite-svelte-mocktimes-starter",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build  --base=./",
+    "serve": "vite preview",
+    "test": "uvu -r esm",
+    "test:watch": "npm run test -- --watch",
+    "lint": "eslint --ignore-path .gitignore **/*.{js,svelte}",
+    "format": "prettier --ignore-path .gitignore --write **/*.{js,svelte}",
+    "screenshot": "am-mocktimes--screenshot",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "devDependencies": {
+    "@rollup/plugin-yaml": "^3.1.0",
+    "@storybook/addon-actions": "^6.5.6",
+    "@storybook/addon-essentials": "^6.5.6",
+    "@storybook/addon-links": "^6.5.6",
+    "@storybook/addon-svelte-csf": "^2.0.4",
+    "@storybook/svelte": "^6.5.6",
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.47",
+    "am-mocktimes": "^4.0.4",
+    "am-mocktimes-addon-screenshot": "^0.3.1",
+    "am-parts-cli": "^0.3.0",
+    "eslint": "^8.16.0",
+    "eslint-plugin-svelte3": "^4.0.0",
+    "esm": "^3.2.25",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.6.2",
+    "prettier-plugin-svelte": "^2.7.0",
+    "svelte": "^3.48.0",
+    "svelte-loader": "^3.1.2",
+    "uvu": "^0.5.3",
+    "vite": "^2.9.9"
+  },
+  "dependencies": {
+    "modern-css-reset": "^1.1.0",
+    "svelte-spa-router": "^3.2.0"
+  }
+}
