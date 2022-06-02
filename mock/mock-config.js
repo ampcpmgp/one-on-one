@@ -1,11 +1,11 @@
 import mock from "am-mocktimes";
 import { replace } from "svelte-spa-router";
 import sleep from "../src/utils/sleep";
-import * as greetings from "../src/states/!common/greetings";
+import * as room from "../src/states/!common/room";
 
 mock({
   sleep,
-  greetings,
+  room,
 
   page(name) {
     replace(name);

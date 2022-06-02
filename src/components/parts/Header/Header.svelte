@@ -1,8 +1,4 @@
-<script>
-  export let text;
-</script>
-
-<h1 on:click>Header {text}</h1>
+<h1 on:click>One on One APP!</h1>
 
 <style>
   h1 {
