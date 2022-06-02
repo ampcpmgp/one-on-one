@@ -1,6 +1,5 @@
 <script>
   import { id, tmpId } from "../../../states/!common/room";
-
   import * as Ayame from "@open-ayame/ayame-web-sdk";
 
   /** @type {HTMLVideoElement} */
@@ -8,21 +7,35 @@
   /** @type {HTMLVideoElement} */
   let remoteVideo;
 
+  let currentRoomId = "";
+
+  /** @type {import("@open-ayame/ayame-web-sdk/dist/connection").default} */
+  let conn;
+
+  /** @type {MediaStream} */
+  let mediaStream;
+
+  async function exitRoom() {
+    mediaStream.getTracks().forEach((track) => track.stop());
+    conn?.disconnect();
+    currentRoomId = "";
+  }
+
   async function enterRoom(id) {
     if (id === "") {
       alert("ルームIDを入力してください");
       return;
     }
 
-    const conn = Ayame.connection(
-      "wss://ayame-labo.shiguredo.app/signaling",
-      id
-    );
+    currentRoomId = id;
 
-    const mediaStream = await navigator.mediaDevices.getUserMedia({
+    conn = Ayame.connection("wss://ayame-labo.shiguredo.app/signaling", id);
+
+    mediaStream = await navigator.mediaDevices.getUserMedia({
       audio: true,
       video: true,
     });
+
     await conn.connect(mediaStream);
     conn.on("disconnect", console.log);
     conn.on("addstream", (/** @type {any} */ e) => {
@@ -37,9 +50,16 @@
 <button>ルーム作成</button>
 <button on:click={() => enterRoom($tmpId)}>カメラ・マイクチェック</button>
 
-<video bind:this={localVideo} muted autoplay playsinline />
-<!-- svelte-ignore a11y-media-has-caption -->
-<video bind:this={remoteVideo} autoplay playsinline />
+{#if currentRoomId === $tmpId}
+  <!-- svelte-ignore a11y-media-has-caption -->
+  <video bind:this={localVideo} autoplay playsinline />
+{:else if currentRoomId !== ""}
+  <video bind:this={localVideo} muted autoplay playsinline />
+  <!-- svelte-ignore a11y-media-has-caption -->
+  <video bind:this={remoteVideo} autoplay playsinline />
+{/if}
+
+<button on:click={() => exitRoom()}>退室する</button>
 
 <style>
   input[type="text"] {
