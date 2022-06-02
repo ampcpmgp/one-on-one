@@ -1,6 +1,7 @@
 <script>
   import { id, tmpId } from "../../../states/!common/room";
   import * as Ayame from "@open-ayame/ayame-web-sdk";
+  import HowToUse from "./HowToUse.svelte";
 
   /** @type {HTMLVideoElement} */
   let localVideo;
@@ -57,6 +58,8 @@
   <video bind:this={localVideo} muted autoplay playsinline />
   <!-- svelte-ignore a11y-media-has-caption -->
   <video bind:this={remoteVideo} autoplay playsinline />
+{:else}
+  <HowToUse />
 {/if}
 
 <button on:click={() => exitRoom()}>退室する</button>
