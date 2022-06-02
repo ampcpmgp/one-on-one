@@ -66,6 +66,6 @@
 
 <style>
   input[type="text"] {
-    width: 400px;
+    width: 280px;
   }
 </style>
