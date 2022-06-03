@@ -1,4 +1,4 @@
-<h1 on:click>One on One APP!</h1>
+<h1 on:click>One on One in 日本!</h1>
 
 <style>
   h1 {
