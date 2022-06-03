@@ -15,8 +15,6 @@
 <RoomEntry />
 <Technology />
 
-<button on:click={() => ($currentId = "")}>退室する</button>
-
 {#if $currentId === $tmpId}
   <!-- svelte-ignore a11y-media-has-caption -->
   <video use:srcObject={$mediaStream} autoplay playsinline />

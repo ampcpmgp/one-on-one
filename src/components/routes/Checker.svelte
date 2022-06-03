@@ -1,5 +1,5 @@
 <script>
-  import Content from "../containers/Home/Content.svelte";
+  import Content from "../containers/Checker/Content.svelte";
   import Header from "../parts/Header/Header.svelte";
 </script>
 
