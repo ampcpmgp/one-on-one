@@ -1,11 +1,8 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
-import { id } from "./room";
+import { test, expect } from "vitest";
+import { formId } from "./room";
 
-test("should id is empty string", () => {
-  id.subscribe((value) => {
-    assert.is(value, "");
+test("should formId is empty string", () => {
+  formId.subscribe((value) => {
+    expect(value).toEqual("");
   });
 });
-
-test.run();
