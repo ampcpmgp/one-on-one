@@ -1,6 +1,7 @@
 <script>
   import { nanoid } from "nanoid";
-  import { formId, currentId } from "../../../states/!common/room";
+  import { push } from "svelte-spa-router";
+  import { formId } from "../../../states/!common/room";
 
   function handleRoomIdGenerateButtonClick() {
     $formId = nanoid();
@@ -18,6 +19,15 @@
       }
     );
   }
+
+  function enterRoom() {
+    if ($formId === "") {
+      alert("ルームIDを入力してください!");
+      return;
+    }
+
+    push(`/room/${$formId}`);
+  }
 </script>
 
 <h2>ルーム</h2>
@@ -27,7 +37,7 @@
   bind:value={$formId}
   placeholder="ルームIDを入力してください"
 />
-<button on:click={() => ($currentId = $formId)}>入室する</button>
+<button on:click={enterRoom}>入室する</button>
 <button on:click={handleRoomIdGenerateButtonClick}>ルームID生成</button>
 
 <style>
