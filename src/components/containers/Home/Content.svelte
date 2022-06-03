@@ -1,4 +1,5 @@
 <script>
+  import { AYAME_WS_URL } from "./../../../constants/ayame.js";
   import { id, tmpId } from "../../../states/!common/room";
   import * as Ayame from "@open-ayame/ayame-web-sdk";
   import HowToUse from "./HowToUse.svelte";
@@ -30,7 +31,7 @@
 
     currentRoomId = id;
 
-    conn = Ayame.connection("wss://ayame-labo.shiguredo.app/signaling", id);
+    conn = Ayame.connection(AYAME_WS_URL, currentRoomId);
 
     mediaStream = await navigator.mediaDevices.getUserMedia({
       audio: true,
