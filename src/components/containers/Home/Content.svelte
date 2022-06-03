@@ -1,9 +1,12 @@
 <script>
+  import DeviceCheck from "./DeviceCheck.svelte";
+  import Technology from "./Technology.svelte";
   import { nanoid } from "nanoid";
   import { AYAME_WS_URL } from "./../../../constants/ayame.js";
   import { id, tmpId } from "../../../states/!common/room";
   import * as Ayame from "@open-ayame/ayame-web-sdk";
   import HowToUse from "./HowToUse.svelte";
+  import Overview from "./Overview.svelte";
 
   /** @type {HTMLVideoElement} */
   let localVideo;
@@ -24,6 +27,9 @@
     currentRoomId = "";
   }
 
+  /**
+   * @param {string} id
+   */
   async function enterRoom(id) {
     if (id === "") {
       alert("ルームIDを入力してください");
@@ -67,6 +73,11 @@
   }
 </script>
 
+<Overview />
+<HowToUse />
+<DeviceCheck />
+<Technology />
+
 {#if currentRoomId === ""}
   <input
     type="text"
@@ -87,8 +98,6 @@
   <video bind:this={localVideo} muted autoplay playsinline />
   <!-- svelte-ignore a11y-media-has-caption -->
   <video bind:this={remoteVideo} autoplay playsinline />
-{:else}
-  <HowToUse />
 {/if}
 
 <style>

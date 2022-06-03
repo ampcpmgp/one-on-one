@@ -1,11 +1,3 @@
-<h2>概要</h2>
-
-<ul>
-  <li>このアプリは 1:1 専用の映像通話アプリです。</li>
-  <li>日本国外からはご利用できません。</li>
-  <li>同僚や友人とお使いください。不特定多数と繋がることはできません。</li>
-</ul>
-
 <h2>使い方</h2>
 
 <ul>
@@ -21,20 +13,4 @@
   </li>
   <li>上記テキスト欄に入力後、「入室する」ボタンをクリックしてください。</li>
   <li>カメラ・音声がONになった状態で開始されます。</li>
-</ul>
-
-<h2>技術情報</h2>
-
-<ul>
-  <li>
-    Signaling Server に
-    <a href="https://ayame-labo.shiguredo.app/" target="_blank">Ayame Labo</a>
-    を利用しています。
-  </li>
-
-  <li>
-    <a href="https://github.com/ampcpmgp/one-on-one" target="_blank">
-      GitHub Link
-    </a>
-  </li>
 </ul>
