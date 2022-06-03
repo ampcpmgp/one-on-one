@@ -31,7 +31,9 @@
 
     currentRoomId = id;
 
-    conn = Ayame.connection(AYAME_WS_URL, currentRoomId);
+    const ayameRoomId = `one-on-one-jp-${id}`;
+
+    conn = Ayame.connection(AYAME_WS_URL, ayameRoomId);
 
     mediaStream = await navigator.mediaDevices.getUserMedia({
       audio: true,
