@@ -4,7 +4,7 @@
   import Technology from "./Technology.svelte";
   import { nanoid } from "nanoid";
   import { AYAME_WS_URL } from "./../../../constants/ayame.js";
-  import { formId, tmpId, currentId } from "../../../states/!common/room";
+  import { formId, tmpId, currentId, conn } from "../../../states/!common/room";
   import * as Ayame from "@open-ayame/ayame-web-sdk";
   import HowToUse from "./HowToUse.svelte";
   import Overview from "./Overview.svelte";
@@ -15,14 +15,13 @@
   let remoteVideo;
 
   /** @type {import("@open-ayame/ayame-web-sdk/dist/connection").default} */
-  let conn;
 
   /** @type {MediaStream} */
   let mediaStream;
 
   async function exitRoom() {
     mediaStream.getTracks().forEach((track) => track.stop());
-    conn?.disconnect();
+    $conn?.disconnect();
     $currentId = "";
   }
 
@@ -39,16 +38,16 @@
 
     const ayameRoomId = `one-on-one-jp-${id}`;
 
-    conn = Ayame.connection(AYAME_WS_URL, ayameRoomId);
+    $conn = Ayame.connection(AYAME_WS_URL, ayameRoomId);
 
     mediaStream = await navigator.mediaDevices.getUserMedia({
       audio: true,
       video: true,
     });
 
-    await conn.connect(mediaStream);
-    conn.on("disconnect", console.log);
-    conn.on("addstream", (/** @type {any} */ e) => {
+    await $conn.connect(mediaStream);
+    $conn.on("disconnect", console.log);
+    $conn.on("addstream", (/** @type {any} */ e) => {
       remoteVideo.srcObject = e.stream;
     });
     localVideo.srcObject = mediaStream;
