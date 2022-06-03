@@ -1,9 +1,10 @@
 <script>
+  import RoomEntry from "./RoomEntry.svelte";
   import DeviceCheck from "./DeviceCheck.svelte";
   import Technology from "./Technology.svelte";
   import { nanoid } from "nanoid";
   import { AYAME_WS_URL } from "./../../../constants/ayame.js";
-  import { id, tmpId } from "../../../states/!common/room";
+  import { formId, tmpId, currentId } from "../../../states/!common/room";
   import * as Ayame from "@open-ayame/ayame-web-sdk";
   import HowToUse from "./HowToUse.svelte";
   import Overview from "./Overview.svelte";
@@ -12,8 +13,6 @@
   let localVideo;
   /** @type {HTMLVideoElement} */
   let remoteVideo;
-
-  let currentRoomId = "";
 
   /** @type {import("@open-ayame/ayame-web-sdk/dist/connection").default} */
   let conn;
@@ -24,7 +23,7 @@
   async function exitRoom() {
     mediaStream.getTracks().forEach((track) => track.stop());
     conn?.disconnect();
-    currentRoomId = "";
+    $currentId = "";
   }
 
   /**
@@ -36,7 +35,7 @@
       return;
     }
 
-    currentRoomId = id;
+    $currentId = id;
 
     const ayameRoomId = `one-on-one-jp-${id}`;
 
@@ -56,10 +55,10 @@
   }
 
   function handleRoomIdGenerateButtonClick() {
-    $id = nanoid();
+    $formId = nanoid();
 
     var type = "text/plain";
-    var blob = new Blob([$id], { type });
+    var blob = new Blob([$formId], { type });
     var data = [new window.ClipboardItem({ [type]: blob })];
 
     navigator.clipboard.write(data).then(
@@ -76,25 +75,25 @@
 <Overview />
 <HowToUse />
 <DeviceCheck />
+<RoomEntry />
 <Technology />
 
-{#if currentRoomId === ""}
+{#if $currentId === ""}
   <input
     type="text"
-    bind:value={$id}
+    bind:value={$formId}
     placeholder="ルームIDを入力してください"
   />
-  <button on:click={() => enterRoom($id)}>入室する</button>
+  <button on:click={() => enterRoom($formId)}>入室する</button>
   <button on:click={handleRoomIdGenerateButtonClick}>ルームID生成</button>
-  <button on:click={() => enterRoom($tmpId)}>カメラ・マイクチェック</button>
 {:else}
   <button on:click={() => exitRoom()}>退室する</button>
 {/if}
 
-{#if currentRoomId === $tmpId}
+{#if $currentId === $tmpId}
   <!-- svelte-ignore a11y-media-has-caption -->
   <video bind:this={localVideo} autoplay playsinline />
-{:else if currentRoomId !== ""}
+{:else if $currentId !== ""}
   <video bind:this={localVideo} muted autoplay playsinline />
   <!-- svelte-ignore a11y-media-has-caption -->
   <video bind:this={remoteVideo} autoplay playsinline />
