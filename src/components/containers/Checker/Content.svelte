@@ -1,16 +1,20 @@
 <script>
+  import { nanoid } from "nanoid";
   import {
-    currentId,
+    connect,
+    disconect,
     mediaStream,
-    tmpId,
   } from "./../../../states/!common/room.js";
   import { srcObject } from "../../../actions/video";
   import { push } from "svelte-spa-router";
+  import { onMount } from "svelte";
 
-  $currentId = $tmpId;
+  onMount(() => {
+    connect(nanoid());
+  });
 
   function exit() {
-    $currentId = "";
+    disconect();
     push("/");
   }
 </script>

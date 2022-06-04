@@ -1,13 +1,14 @@
 <script>
   import { nanoid } from "nanoid";
   import { push } from "svelte-spa-router";
-  import { formId } from "../../../states/!common/room";
+
+  let formId = "";
 
   function handleRoomIdGenerateButtonClick() {
-    $formId = nanoid();
+    formId = nanoid();
 
     var type = "text/plain";
-    var blob = new Blob([$formId], { type });
+    var blob = new Blob([formId], { type });
     var data = [new window.ClipboardItem({ [type]: blob })];
 
     navigator.clipboard.write(data).then(
@@ -21,12 +22,12 @@
   }
 
   function enterRoom() {
-    if ($formId === "") {
+    if (formId === "") {
       alert("ルームIDを入力してください!");
       return;
     }
 
-    push(`/room/${$formId}`);
+    push(`/room/${formId}`);
   }
 </script>
 
@@ -34,7 +35,7 @@
 
 <input
   type="text"
-  bind:value={$formId}
+  bind:value={formId}
   placeholder="ルームIDを入力してください"
 />
 <button on:click={enterRoom}>入室する</button>

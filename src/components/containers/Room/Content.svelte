@@ -1,18 +1,22 @@
 <script>
   import {
-    currentId,
+    connect,
+    disconect,
     mediaStream,
     remoteStream,
   } from "./../../../states/!common/room.js";
   import { srcObject } from "../../../actions/video";
   import { push } from "svelte-spa-router";
+  import { onMount } from "svelte";
 
   export let params = {};
 
-  $currentId = params.id;
+  onMount(() => {
+    connect(params.id);
+  });
 
   function exit() {
-    $currentId = "";
+    disconect();
     push("/");
   }
 </script>
