@@ -19,6 +19,15 @@
   }
 </script>
 
+<ul>
+  <li>カメラ映像が正しく表示されていますか？</li>
+  <li>マイク音声がスピーカーから流れますか？</li>
+  <li>問題が無ければ確認は完了です。</li>
+</ul>
+
 <!-- svelte-ignore a11y-media-has-caption -->
 <video use:srcObject={$mediaStream} autoplay playsinline />
-<button on:click={exit}>退室する</button>
+
+<div>
+  <button on:click={exit}>退室する</button>
+</div>
