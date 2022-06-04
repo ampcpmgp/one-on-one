@@ -21,6 +21,8 @@
   }
 </script>
 
+<p>※片側が黒く表示された場合はリロードすると改善されます。</p>
+
 <div class="videos">
   <video use:srcObject={$mediaStream} muted autoplay playsinline />
   <!-- svelte-ignore a11y-media-has-caption -->

@@ -25,6 +25,10 @@
   <li>問題が無ければ確認は完了です。</li>
 </ul>
 
+<p>
+  ※スピーカー音がマイク音声を拾うとハウリングします。スピーカー音量を下げてもう一度ご確認ください。
+</p>
+
 <!-- svelte-ignore a11y-media-has-caption -->
 <video use:srcObject={$mediaStream} autoplay playsinline />
 
