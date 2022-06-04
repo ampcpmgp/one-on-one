@@ -1,3 +1,7 @@
+<script>
+  import version from "../../../../version.json";
+</script>
+
 <h2>技術情報</h2>
 
 <ul>
@@ -12,5 +16,9 @@
     <a href="https://github.com/ampcpmgp/one-on-one" target="_blank">
       こちら
     </a>
+  </li>
+
+  <li>
+    v{version.value}
   </li>
 </ul>
