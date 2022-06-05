@@ -21,10 +21,13 @@
   }
 </script>
 
-<p>※片側が黒く表示された場合はリロードすると改善されます。</p>
+<p>
+  ※相手側の画面が黒くなった場合は切断されています。再度通話をしたい場合、リロードするか、再度ルームIDを再生成してください。
+</p>
 
 <div class="videos">
   <video use:srcObject={$mediaStream} muted autoplay playsinline />
+
   <!-- svelte-ignore a11y-media-has-caption -->
   <video use:srcObject={$remoteStream} autoplay playsinline />
 </div>
