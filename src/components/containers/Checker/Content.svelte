@@ -10,6 +10,7 @@
   import { onMount } from "svelte";
 
   onMount(() => {
+    if ($mediaStream) return;
     connect(nanoid());
   });
 
