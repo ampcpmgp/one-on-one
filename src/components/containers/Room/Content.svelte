@@ -12,6 +12,7 @@
   export let params = {};
 
   onMount(() => {
+    if ($mediaStream) return;
     connect(params.id);
   });
 
